@@ -1,0 +1,12 @@
+version: "3.8"
+name: 3-dywe-uebung-1
+services:
+  dywe_server_1:
+    container_name: dywe_1_www
+    build: .
+    restart: always
+    ports:
+      - 3310:80
+    volumes:
+      - ./project/:/var/www/html
+      - ./assets/:/var/www/html/web/assets/:ro
