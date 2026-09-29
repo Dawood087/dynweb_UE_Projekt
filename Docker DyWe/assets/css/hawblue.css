@@ -1,9 +1,13 @@
 :root {
   --hawblue: #00305d;
-  --carousel-image-height: 28rem;
+  --carousel-image-height: min(28rem, 56.25vw);
 }
 
 .custom_carousel_image {
+  display: block;
+  width: 100%;
   height: var(--carousel-image-height);
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  object-position: center;
 }
