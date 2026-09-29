@@ -1,3 +1,9 @@
 :root {
   --hawblue: #00305d;
+  --carousel-image-height: 28rem;
+}
+
+.custom_carousel_image {
+  height: var(--carousel-image-height);
+  object-fit: cover;
 }
