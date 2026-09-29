@@ -53,7 +53,7 @@
             <div class="card border-0 shadow-sm h-100">
               <div class="card-body p-4">
                 <h2 class="h4 fw-bold text-primary mb-3">Verantwortlich</h2>
-                <p class="mb-3 text-muted">Für die Inhalte dieser Website verantwortlich sind die Studierenden der Projektgruppe HAW Campus Stories im Rahmen der Übungsaufgabe im Modul Dynamic Web Engineering.</p>
+                <p class="mb-3 text-muted">Für die Inhalte dieser Website verantwortlich sind die Studierenden der Projektgruppe HAW Campus Stories (David Piekarski & Marat Repin) im Rahmen der Übungsaufgabe im Modul Dynamische Webanwendungen / Dynamische Webseitengestaltung.</p>
                 <div class="d-grid gap-2">
                   <a href="mailto:hello@haw-campus-stories.de" class="btn" style="background-color: var(--bs-primary); color: white;">E-Mail senden</a>
                   <a href="/" class="btn btn-outline-primary">Zur Startseite</a>
