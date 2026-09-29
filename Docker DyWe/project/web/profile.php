@@ -21,7 +21,7 @@ $profile = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?php echo $profile['name']; ?> – Profil</title>
+    <title><?= $profile['name'] ?> – Profil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/assets/css/custom_styling.css" rel="stylesheet" />
   </head>
@@ -48,23 +48,23 @@ $profile = [
           <div class="card-body p-4 p-lg-5">
             <div class="row align-items-center g-4">
               <div class="col-md-auto">
-                <img src="<?php echo $profile['avatar']; ?>" alt="Profilbild von <?php echo $profile['name']; ?>" class="rounded-circle border border-4 border-white shadow" width="150" height="150" style="object-fit: cover;" />
+                <img src="<?= $profile['avatar'] ?>" alt="Profilbild von <?= $profile['name'] ?>" class="rounded-circle border border-4 border-white shadow" width="150" height="150" style="object-fit: cover;" />
               </div>
               <div class="col-md">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
                   <div>
-                    <h1 class="fw-bold text-primary mb-1"><?php echo $profile['name']; ?></h1>
-                    <div class="text-muted mb-2">@<?php echo $profile['handle']; ?></div>
-                    <div class="text-muted"><?php echo $profile['role']; ?> · <?php echo $profile['location']; ?></div>
+                    <h1 class="fw-bold text-primary mb-1"><?= $profile['name'] ?></h1>
+                    <div class="text-muted mb-2">@<?= $profile['handle'] ?></div>
+                    <div class="text-muted"><?= $profile['role'] ?> · <?= $profile['location'] ?></div>
                   </div>
                   <button class="btn btn-primary btn-lg" type="button">Folgen</button>
                 </div>
-                <p class="mt-3 mb-3 text-secondary"><?php echo $profile['bio']; ?></p>
+                <p class="mt-3 mb-3 text-secondary"><?= $profile['bio'] ?></p>
 
                 <div class="d-flex flex-wrap gap-4 small text-muted">
-                  <span><strong class="text-dark"><?php echo $profile['followers']; ?></strong> Follower</span>
-                  <span><strong class="text-dark"><?php echo $profile['following']; ?></strong> Following</span>
-                  <span><strong class="text-dark"><?php echo $profile['posts']; ?></strong> Posts</span>
+                  <span><strong class="text-dark"><?= $profile['followers'] ?></strong> Follower</span>
+                  <span><strong class="text-dark"><?= $profile['following'] ?></strong> Following</span>
+                  <span><strong class="text-dark"><?= $profile['posts'] ?></strong> Posts</span>
                 </div>
               </div>
             </div>
@@ -81,8 +81,8 @@ $profile = [
                 <div class="list-group list-group-flush">
                   <?php foreach ($profile['stats'] as $stat): ?>
                     <div class="list-group-item px-0">
-                      <small class="text-muted d-block"><?php echo $stat['label']; ?></small>
-                      <strong><?php echo $stat['value']; ?></strong>
+                      <small class="text-muted d-block"><?= $stat['label'] ?></small>
+                      <strong><?= $stat['value'] ?></strong>
                     </div>
                   <?php endforeach; ?>
                 </div>

@@ -37,26 +37,26 @@ require_once __DIR__ . '/../model/post_data.php';
               <article class="card border-0 shadow-sm overflow-hidden">
                 <div class="card-body p-3 p-md-4">
                   <div class="d-flex align-items-center gap-3 mb-3">
-                    <img src="/assets/img/<?php echo htmlspecialchars($post['user_image'], ENT_QUOTES, 'UTF-8'); ?>" alt="Profilbild von <?php echo htmlspecialchars($post['user_realname'], ENT_QUOTES, 'UTF-8'); ?>" class="rounded-circle" width="48" height="48" style="object-fit: cover;" />
+                    <img src="/assets/img/<?= htmlspecialchars($post['user_image']) ?>" alt="Profilbild von <?= htmlspecialchars($post['user_realname']) ?>" class="rounded-circle" width="48" height="48" style="object-fit: cover;" />
                     <div class="flex-grow-1">
-                      <a href="?user=<?php echo urlencode($post['username']); ?>" class="text-decoration-none fw-bold text-primary">@<?php echo htmlspecialchars($post['username'], ENT_QUOTES, 'UTF-8'); ?></a>
-                      <div class="small text-muted"><?php echo htmlspecialchars($post['user_realname'], ENT_QUOTES, 'UTF-8'); ?></div>
+                      <a href="?user=<?= urlencode($post['username']) ?>" class="text-decoration-none fw-bold text-primary">@<?= htmlspecialchars($post['username']) ?></a>
+                      <div class="small text-muted"><?= htmlspecialchars($post['user_realname']) ?></div>
                     </div>
                   </div>
 
                   <?php if ($post['post_video_file'] !== ''): ?>
                     <video class="w-100 rounded" controls playsinline preload="metadata">
-                      <source src="<?php echo htmlspecialchars($post['post_video_file'], ENT_QUOTES, 'UTF-8'); ?>" type="video/mp4" />
+                      <source src="<?= htmlspecialchars($post['post_video_file']) ?>" type="video/mp4" />
                       Dein Browser unterstützt das Video-Tag nicht.
                     </video>
                   <?php else: ?>
-                    <img src="/assets/img/Karussel1.jpeg" alt="Campus-Moment von <?php echo htmlspecialchars($post['user_realname'], ENT_QUOTES, 'UTF-8'); ?>" class="w-100 rounded" />
+                    <img src="/assets/img/Karussel1.jpeg" alt="Campus-Moment von <?= htmlspecialchars($post['user_realname']) ?>" class="w-100 rounded" />
                   <?php endif; ?>
 
-                  <p class="mt-3 mb-2"><?php echo htmlspecialchars($post['post_text'], ENT_QUOTES, 'UTF-8'); ?></p>
+                  <p class="mt-3 mb-2"><?= htmlspecialchars($post['post_text']) ?></p>
                   <div class="d-flex flex-wrap gap-2">
                     <?php foreach ($post['post_tags'] as $tag): ?>
-                      <span class="badge text-bg-light">#<?php echo htmlspecialchars($tag, ENT_QUOTES, 'UTF-8'); ?></span>
+                      <span class="badge text-bg-light">#<?= htmlspecialchars($tag) ?></span>
                     <?php endforeach; ?>
                   </div>
                 </div>
