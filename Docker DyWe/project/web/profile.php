@@ -12,7 +12,7 @@ $profile = [
   'stats' => [
     ['label' => 'Studiengang', 'value' => 'Multimedia Production'],
     ['label' => 'Semester', 'value' => '3. Semester'],
-    ['label' => 'Interessen', 'value' => 'Design, Video Editing, Campus Life'],
+    ['label' => 'Interessen', 'value' => 'Design, Video Editing, Sport, Social Media'],
   ]
 ];
 ?>
@@ -48,7 +48,7 @@ $profile = [
           <div class="card-body p-4 p-lg-5">
             <div class="row align-items-center g-4">
               <div class="col-md-auto">
-                <img src="<?= $profile['avatar'] ?>" alt="Profilbild von <?= $profile['name'] ?>" class="rounded-circle border border-4 border-white shadow" width="150" height="150" style="object-fit: cover;" />
+                <img src="<?= $profile['avatar'] ?>" class="rounded-circle border border-4 border-white shadow" width="150" height="150" style="object-fit: cover;" />
               </div>
               <div class="col-md">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">

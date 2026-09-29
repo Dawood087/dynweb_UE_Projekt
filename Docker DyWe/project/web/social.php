@@ -1,5 +1,13 @@
 <?php
 require_once __DIR__ . '/../model/post_data.php';
+
+$thumbnailByPostId = array(
+    "1" => "/assets/videos/thumb/thumb_spaetsommerfest.jpeg",
+    "2" => "/assets/videos/thumb/thumb_videocut.jpeg",
+    "3" => "/assets/videos/thumb/thumb_drehbuchschreiben.jpeg",
+    "4" => "/assets/videos/thumb/thumb_maclabore.jpeg",
+    "5" => "/assets/videos/thumb/thumb_unitag.jpeg",
+);
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -32,12 +40,12 @@ require_once __DIR__ . '/../model/post_data.php';
         <h1 class="h2 fw-bold text-primary mb-4">Campus Feed</h1>
 
         <div class="row g-4">
-          <?php foreach ($posts as $post): ?>
+          <?php foreach ($posts as $postId => $post): ?>
             <div class="col-12">
               <article class="card border-0 shadow-sm overflow-hidden">
                 <div class="card-body p-3 p-md-4">
                   <div class="d-flex align-items-center gap-3 mb-3">
-                    <img src="/assets/img/<?= htmlspecialchars($post['user_image']) ?>" alt="Profilbild von <?= htmlspecialchars($post['user_realname']) ?>" class="rounded-circle" width="48" height="48" style="object-fit: cover;" />
+                    <img src="/assets/img/<?= htmlspecialchars($post['user_image']) ?>" class="rounded-circle" width="48" height="48" style="object-fit: cover;" />
                     <div class="flex-grow-1">
                       <a href="?user=<?= urlencode($post['username']) ?>" class="text-decoration-none fw-bold text-primary">@<?= htmlspecialchars($post['username']) ?></a>
                       <div class="small text-muted"><?= htmlspecialchars($post['user_realname']) ?></div>
@@ -50,7 +58,7 @@ require_once __DIR__ . '/../model/post_data.php';
                       Dein Browser unterstützt das Video-Tag nicht.
                     </video>
                   <?php else: ?>
-                    <img src="/assets/img/Karussel1.jpeg" alt="Campus-Moment von <?= htmlspecialchars($post['user_realname']) ?>" class="w-100 rounded" />
+                    <img src="<?= $thumbnailByPostId[$postId] ?>" class="w-100 rounded" />
                   <?php endif; ?>
 
                   <p class="mt-3 mb-2"><?= htmlspecialchars($post['post_text']) ?></p>
