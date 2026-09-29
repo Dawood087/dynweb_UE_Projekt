@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Impressum – HAW Campus Stories</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/assets/css/hawblue.css" rel="stylesheet" />
+    <link href="/assets/css/custom_styling.css" rel="stylesheet" />
   </head>
-  <body class="bg-light" style="--bs-primary: var(--hawblue); --bs-primary-rgb: 0, 48, 93;">
+  <body class="bg-light">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
       <div class="container">
         <a class="navbar-brand fw-bold" href="/">HAW Campus</a>
@@ -55,7 +55,7 @@
                 <h2 class="h4 fw-bold text-primary mb-3">Verantwortlich</h2>
                 <p class="mb-3 text-muted">Für die Inhalte dieser Website verantwortlich sind die Studierenden der Projektgruppe HAW Campus Stories im Rahmen der Übungsaufgabe im Modul Dynamic Web Engineering.</p>
                 <div class="d-grid gap-2">
-                  <a href="mailto:hello@haw-campus-stories.de" class="btn" style="background-color: var(--hawblue); color: white;">E-Mail senden</a>
+                  <a href="mailto:hello@haw-campus-stories.de" class="btn" style="background-color: var(--bs-primary); color: white;">E-Mail senden</a>
                   <a href="/" class="btn btn-outline-primary">Zur Startseite</a>
                 </div>
               </div>

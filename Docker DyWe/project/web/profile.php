@@ -47,9 +47,9 @@ $profile = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $profile['name']; ?> – Profil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/assets/css/hawblue.css" rel="stylesheet" />
+    <link href="/assets/css/custom_styling.css" rel="stylesheet" />
   </head>
-  <body class="bg-light" style="--bs-primary: var(--hawblue); --bs-primary-rgb: 0, 48, 93;">
+  <body class="bg-light">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
       <div class="container">
         <a class="navbar-brand fw-bold" href="/">HAW Campus</a>

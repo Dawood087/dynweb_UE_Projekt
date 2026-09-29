@@ -1,0 +1,35 @@
+:root {
+  --bs-primary: #00305d;
+  --bs-primary-rgb: 0, 48, 93;
+}
+
+.btn-primary,
+.btn-outline-primary {
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-bg: var(--bs-primary);
+  --bs-btn-hover-border-color: var(--bs-primary);
+  --bs-btn-active-bg: var(--bs-primary);
+  --bs-btn-active-border-color: var(--bs-primary);
+  --bs-btn-focus-shadow-rgb: var(--bs-primary-rgb);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-disabled-bg: var(--bs-primary);
+  --bs-btn-disabled-border-color: var(--bs-primary);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--bs-primary);
+  --bs-btn-disabled-color: var(--bs-primary);
+  --bs-btn-disabled-border-color: var(--bs-primary);
+}
+
+.custom_carousel_image {
+  display: block;
+  width: 100%;
+  height: var(--carousel-image-height);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+}

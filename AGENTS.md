@@ -26,7 +26,7 @@ Dieses Dokument dient als zentrale Anleitung und Richtlinie für KI-Assistenten 
    - **Anpassung von Bootstrap-Klassen:** Bootstrap-Klassen und -Variablen dürfen modifiziert werden (z. B. Überschreiben der `primary`-Farbe `--bs-primary` mit dem HAW-Kiel-Blauton `#00305d`).
    - **Custom-Klassen:** Zusätzliche eigene CSS-Klassen **müssen** mit dem Präfix `custom_` beginnen (z. B. `.custom_feed_card`).
    - **CSS-Variablen:** Wiederkehrende CSS-Eigenschaften (z. B. Farben oder Abstände) **müssen** als CSS-Variablen umgesetzt werden.
-   - **CSS-Ordner:** Eigene Styles gehören ausschließlich in den Ordner `/assets/css/` (z. B. `/assets/css/hawblue.css`).
+   - **CSS-Ordner:** Eigene Styles gehören ausschließlich in den Ordner `/assets/css/` (z. B. `/assets/css/custom_styling.css`).
 4. **Verbot von Dummy-Inhalten:** Keine Platzhalter-Texte ("Lorem Ipsum", "Max Mustermann"). Alle Inhalte müssen sich wie ein echtes HAW-Kiel-Campus-Portal anfühlen.
 
 ---
@@ -47,7 +47,7 @@ Dieses Dokument dient als zentrale Anleitung und Richtlinie für KI-Assistenten 
 │   ├── profile.php         # Profilseite
 │   └── impressum.php       # Impressum
 └── assets/
-    ├── css/                # Eigene CSS-Dateien (z. B. hawblue.css)
+    ├── css/                # Eigene CSS-Dateien (z. B. custom_styling.css)
     ├── img/                # Optimierte Bilder & Profilfotos
     └── videos/
         ├── src/            # MP4-Videodateien (Prefix: GRUPPE_*, z. B. 0_video.mp4)
