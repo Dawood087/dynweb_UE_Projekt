@@ -37,7 +37,7 @@ require_once __DIR__ . '/../model/post_data.php';
               <article class="card border-0 shadow-sm overflow-hidden">
                 <div class="card-body p-3 p-md-4">
                   <div class="d-flex align-items-center gap-3 mb-3">
-                    <img src="/assets/img/<?php echo htmlspecialchars($post['user_image'], ENT_QUOTES, 'UTF-8'); ?>" alt="Profilbild von <?php echo htmlspecialchars($post['user_realname'], ENT_QUOTES, 'UTF-8'); ?>" class="rounded-circle" width="48" height="48" />
+                    <img src="/assets/img/<?php echo htmlspecialchars($post['user_image'], ENT_QUOTES, 'UTF-8'); ?>" alt="Profilbild von <?php echo htmlspecialchars($post['user_realname'], ENT_QUOTES, 'UTF-8'); ?>" class="rounded-circle" width="48" height="48" style="object-fit: cover;" />
                     <div class="flex-grow-1">
                       <a href="?user=<?php echo urlencode($post['username']); ?>" class="text-decoration-none fw-bold text-primary">@<?php echo htmlspecialchars($post['username'], ENT_QUOTES, 'UTF-8'); ?></a>
                       <div class="small text-muted"><?php echo htmlspecialchars($post['user_realname'], ENT_QUOTES, 'UTF-8'); ?></div>

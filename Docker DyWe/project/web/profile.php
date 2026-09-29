@@ -7,36 +7,12 @@ $profile = [
   'bio' => 'Studierender im Semester 3 des Studiengangs Multimedia Production an der HAW Kiel.',
   'followers' => 0,
   'following' => 0,
-  'posts' => 4,
+  'posts' => 5,
   'avatar' => '/assets/img/PictureOfMe.jpg',
-  'banner' => '/assets/img/Karussel1.jpeg',
   'stats' => [
     ['label' => 'Studiengang', 'value' => 'Multimedia Production'],
     ['label' => 'Semester', 'value' => '3. Semester'],
     ['label' => 'Interessen', 'value' => 'Design, Video Editing, Campus Life'],
-  ],
-  'posts_list' => [
-    [
-      'title' => 'Projektarbeit läuft',
-      'text' => 'Aktuell am Aufbau einer Campus-Community mit klaren Inhalten und frischer Storytelling-Ästhetik. HAWKiel, WebEngineering und UX.',
-      'likes' => 421,
-      'comments' => 18,
-      'image' => '/assets/img/Karussel1.jpeg'
-    ],
-    [
-      'title' => 'Campus-Shortcut',
-      'text' => 'Ein ruhiger Lernplatz, gute Musik und eine klare Aufgabenliste – so sieht produktiver Alltag aus. Campus Life, Produktivität und Design.',
-      'likes' => 356,
-      'comments' => 12,
-      'image' => '/assets/img/Karussel1.jpeg'
-    ],
-    [
-      'title' => 'Fokuszeit',
-      'text' => 'Wenn die Aufgabe klar ist, wirkt auch der Campus gleich viel ruhiger und kreativer. Fokus, Coding und HAW.',
-      'likes' => 512,
-      'comments' => 27,
-      'image' => '/assets/img/Karussel1.jpeg'
-    ]
   ]
 ];
 ?>
@@ -59,8 +35,8 @@ $profile = [
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-3">
             <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="/social.php">Feed</a></li>
             <li class="nav-item"><a class="nav-link active" href="/profile.php">Profil</a></li>
+            <li class="nav-item"><a class="nav-link" href="/social.php">Feed</a></li>
           </ul>
         </div>
       </div>
