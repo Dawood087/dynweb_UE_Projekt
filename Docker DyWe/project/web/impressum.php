@@ -1,3 +1,9 @@
+<?php
+/*
+ * This page is a PHP-compatible template, but its legal content is currently
+ * static HTML because it does not need values from an external data array.
+ */
+?>
 <!doctype html>
 <html lang="de">
   <head>

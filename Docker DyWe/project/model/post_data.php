@@ -1,4 +1,9 @@
 <?php
+/*
+ * This array acts as the feed's data source.
+ * Each post is indexed by a stable ID and stores the values rendered by
+ * social.php, including the author, text, tags and optional video file.
+ */
 $posts = array(
     "1" => array("username" => "davidpiekarski",
         "userid" => 1,

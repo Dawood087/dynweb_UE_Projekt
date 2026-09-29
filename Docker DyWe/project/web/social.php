@@ -1,6 +1,8 @@
 <?php
+// Load the post array so the template can render the feed from one data source.
 require_once __DIR__ . '/../model/post_data.php';
 
+// Use a post-specific thumbnail when a post does not have a video file.
 $thumbnailByPostId = array(
     "1" => "/assets/videos/thumb/thumb_spaetsommerfest.jpeg",
     "2" => "/assets/videos/thumb/thumb_videocut.jpeg",
@@ -41,18 +43,22 @@ $thumbnailByPostId = array(
         <h1 class="h2 fw-bold text-primary mb-4">Campus Feed</h1>
 
         <div class="row g-4">
+          <!-- Iterate over every post and render its array values in the feed card. -->
           <?php foreach ($posts as $postId => $post): ?>
             <div class="col-12">
               <article class="card border-0 shadow-sm overflow-hidden">
                 <div class="card-body p-3 p-md-4">
                   <div class="d-flex align-items-center gap-3 mb-3">
+                    <!-- Escape user-provided values before inserting them into HTML attributes. -->
                     <img src="/assets/img/<?= htmlspecialchars($post['user_image']) ?>" class="rounded-circle custom_feed_avatar" alt="Profilbild von <?= htmlspecialchars($post['user_realname']) ?>" />
                     <div class="flex-grow-1">
+                      <!-- urlencode() makes the username safe to use as a query-string value. -->
                       <a href="?user=<?= urlencode($post['username']) ?>" class="text-decoration-none fw-bold text-primary">@<?= htmlspecialchars($post['username']) ?></a>
                       <div class="small text-muted"><?= htmlspecialchars($post['user_realname']) ?></div>
                     </div>
                   </div>
 
+                  <!-- Posts with a video render a player; otherwise the matching thumbnail is shown. -->
                   <?php if ($post['post_video_file'] !== ''): ?>
                     <video class="w-100 rounded" controls playsinline preload="metadata">
                       <source src="<?= htmlspecialchars($post['post_video_file']) ?>" type="video/mp4" />
@@ -62,8 +68,10 @@ $thumbnailByPostId = array(
                     <img src="<?= $thumbnailByPostId[$postId] ?>" class="w-100 rounded" />
                   <?php endif; ?>
 
+                  <!-- Output the post text and escape it so the array content remains plain text. -->
                   <p class="mt-3 mb-2"><?= htmlspecialchars($post['post_text']) ?></p>
                   <div class="d-flex flex-wrap gap-2">
+                    <!-- Create one hashtag link for each tag stored in the post's tags array. -->
                     <?php foreach ($post['post_tags'] as $tag): ?>
                       <a href="/?tag=<?= urlencode($tag) ?>" class="badge text-bg-light text-decoration-none">#<?= htmlspecialchars($tag) ?></a>
                     <?php endforeach; ?>

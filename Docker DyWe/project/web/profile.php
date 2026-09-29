@@ -1,4 +1,9 @@
 <?php
+/*
+ * This associative array is the profile data source.
+ * The template below reads these keys to fill the page without duplicating
+ * profile values in the HTML markup.
+ */
 $profile = [
   'name' => 'David Piekarski',
   'handle' => 'davidpiekarski',
@@ -21,6 +26,7 @@ $profile = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Read the profile name from the array for the browser tab title. -->
     <title><?= $profile['name'] ?> – Profil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/assets/css/custom_styling.css" rel="stylesheet" />
@@ -49,19 +55,23 @@ $profile = [
           <div class="card-body p-4 p-lg-5">
             <div class="row align-items-center g-4">
               <div class="col-md-auto">
+                <!-- Insert the avatar path and name from the profile array. -->
                 <img src="<?= $profile['avatar'] ?>" class="rounded-circle border border-4 border-white shadow custom_profile_avatar" alt="Profilbild von <?= $profile['name'] ?>" />
               </div>
               <div class="col-md">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
                   <div>
+                    <!-- These short outputs display the profile's identity fields. -->
                     <h1 class="fw-bold text-primary mb-1"><?= $profile['name'] ?></h1>
                     <div class="text-muted mb-2">@<?= $profile['handle'] ?></div>
                     <div class="text-muted"><?= $profile['role'] ?> · <?= $profile['location'] ?></div>
                   </div>
                   <button class="btn btn-primary btn-lg" type="button">Folgen</button>
                 </div>
+                <!-- Render the longer biography stored in the profile array. -->
                 <p class="mt-3 mb-3 text-secondary"><?= $profile['bio'] ?></p>
 
+                <!-- Render the numeric profile counters from their corresponding array keys. -->
                 <div class="d-flex flex-wrap gap-4 small text-muted">
                   <span><strong class="text-dark"><?= $profile['followers'] ?></strong> Follower</span>
                   <span><strong class="text-dark"><?= $profile['following'] ?></strong> Following</span>
@@ -80,6 +90,7 @@ $profile = [
               <div class="card-body">
                 <h2 class="h5 fw-bold text-primary mb-3">Über mich</h2>
                 <div class="list-group list-group-flush">
+                  <!-- Each stats entry contains a label/value pair for one profile detail. -->
                   <?php foreach ($profile['stats'] as $stat): ?>
                     <div class="list-group-item px-0">
                       <small class="text-muted d-block"><?= $stat['label'] ?></small>
