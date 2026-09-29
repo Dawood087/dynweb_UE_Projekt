@@ -3,6 +3,10 @@
   --bs-primary-rgb: 0, 48, 93;
 }
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .btn-primary,
 .btn-outline-primary {
   --bs-btn-border-color: var(--bs-primary);
