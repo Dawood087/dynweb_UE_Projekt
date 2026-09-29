@@ -2,7 +2,7 @@
 $profile = [
   'name' => 'David Piekarski',
   'handle' => 'davidpiekarski',
-  'role' => 'Student MMP',
+  'role' => 'Student',
   'location' => 'Kiel, Deutschland',
   'bio' => 'Studierender im Semester 3 des Studiengangs Multimedia Production an der HAW Kiel.',
   'followers' => 0,
