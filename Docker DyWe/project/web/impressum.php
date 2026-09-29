@@ -19,6 +19,7 @@
             <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="/social.php">Feed</a></li>
             <li class="nav-item"><a class="nav-link active" href="/impressum.php">Impressum</a></li>
+            <li class="nav-item"><a class="nav-link" href="/style-guide.html">Style Guide</a></li>
           </ul>
         </div>
       </div>
@@ -42,8 +43,6 @@
                   <li class="list-group-item px-0"><strong>Name:</strong> HAW Campus Stories – Projektgruppe</li>
                   <li class="list-group-item px-0"><strong>Institution:</strong> Hochschule für Angewandte Wissenschaften Kiel</li>
                   <li class="list-group-item px-0"><strong>Adresse:</strong> Sokratesplatz 1, 24149 Kiel</li>
-                  <li class="list-group-item px-0"><strong>Kontakt:</strong> hello@haw-campus-stories.de</li>
-                  <li class="list-group-item px-0"><strong>Telefon:</strong> +49 431 1234 567</li>
                 </ul>
               </div>
             </div>
@@ -55,7 +54,7 @@
                 <h2 class="h4 fw-bold text-primary mb-3">Verantwortlich</h2>
                 <p class="mb-3 text-muted">Für die Inhalte dieser Website verantwortlich sind die Studierenden der Projektgruppe HAW Campus Stories (David Piekarski & Marat Repin) im Rahmen der Übungsaufgabe im Modul Dynamische Webanwendungen / Dynamische Webseitengestaltung.</p>
                 <div class="d-grid gap-2">
-                  <a href="mailto:hello@haw-campus-stories.de" class="btn" style="background-color: var(--bs-primary); color: white;">E-Mail senden</a>
+                  <a href="https://www.haw-kiel.de/" class="btn custom_contact_button">HAW Kiel besuchen</a>
                   <a href="/" class="btn btn-outline-primary">Zur Startseite</a>
                 </div>
               </div>
@@ -94,6 +93,7 @@
           <a href="/" class="text-white-50 text-decoration-none">Start</a>
           <a href="/social.php" class="text-white-50 text-decoration-none">Feed</a>
           <a href="/impressum.php" class="text-white-50 text-decoration-none">Impressum</a>
+          <a href="/style-guide.html" class="text-white-50 text-decoration-none">Style Guide</a>
         </div>
       </div>
     </footer>

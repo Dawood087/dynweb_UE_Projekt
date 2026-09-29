@@ -1,6 +1,10 @@
 :root {
   --bs-primary: #00305d;
   --bs-primary-rgb: 0, 48, 93;
+  --carousel-image-height: 24rem;
+  --feature-icon-size: 3.25rem;
+  --profile-avatar-size: 9.375rem;
+  --feed-avatar-size: 3rem;
 }
 
 body {
@@ -36,4 +40,27 @@ body {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: center;
+}
+
+.custom_feature_icon {
+  width: var(--feature-icon-size);
+  height: var(--feature-icon-size);
+  font-size: 1.5rem;
+}
+
+.custom_profile_avatar {
+  width: var(--profile-avatar-size);
+  height: var(--profile-avatar-size);
+  object-fit: cover;
+}
+
+.custom_feed_avatar {
+  width: var(--feed-avatar-size);
+  height: var(--feed-avatar-size);
+  object-fit: cover;
+}
+
+.custom_contact_button {
+  background-color: var(--bs-primary);
+  color: white;
 }

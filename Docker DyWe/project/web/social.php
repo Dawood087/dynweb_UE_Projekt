@@ -30,6 +30,7 @@ $thumbnailByPostId = array(
             <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="/profile.php">Profil</a></li>
             <li class="nav-item"><a class="nav-link active" href="/social.php">Feed</a></li>
+            <li class="nav-item"><a class="nav-link" href="/style-guide.html">Style Guide</a></li>
           </ul>
         </div>
       </div>
@@ -45,7 +46,7 @@ $thumbnailByPostId = array(
               <article class="card border-0 shadow-sm overflow-hidden">
                 <div class="card-body p-3 p-md-4">
                   <div class="d-flex align-items-center gap-3 mb-3">
-                    <img src="/assets/img/<?= htmlspecialchars($post['user_image']) ?>" class="rounded-circle" width="48" height="48" style="object-fit: cover;" />
+                    <img src="/assets/img/<?= htmlspecialchars($post['user_image']) ?>" class="rounded-circle custom_feed_avatar" alt="Profilbild von <?= htmlspecialchars($post['user_realname']) ?>" />
                     <div class="flex-grow-1">
                       <a href="?user=<?= urlencode($post['username']) ?>" class="text-decoration-none fw-bold text-primary">@<?= htmlspecialchars($post['username']) ?></a>
                       <div class="small text-muted"><?= htmlspecialchars($post['user_realname']) ?></div>
@@ -64,7 +65,7 @@ $thumbnailByPostId = array(
                   <p class="mt-3 mb-2"><?= htmlspecialchars($post['post_text']) ?></p>
                   <div class="d-flex flex-wrap gap-2">
                     <?php foreach ($post['post_tags'] as $tag): ?>
-                      <span class="badge text-bg-light">#<?= htmlspecialchars($tag) ?></span>
+                      <a href="/?tag=<?= urlencode($tag) ?>" class="badge text-bg-light text-decoration-none">#<?= htmlspecialchars($tag) ?></a>
                     <?php endforeach; ?>
                   </div>
                 </div>
@@ -81,6 +82,7 @@ $thumbnailByPostId = array(
         <div class="d-flex flex-wrap gap-3">
           <a href="/" class="text-white-50 text-decoration-none">Start</a>
           <a href="/social.php" class="text-white-50 text-decoration-none">Feed</a>
+          <a href="/style-guide.html" class="text-white-50 text-decoration-none">Style Guide</a>
           <a href="/impressum.php" class="text-white-50 text-decoration-none">Impressum</a>
         </div>
       </div>

@@ -37,18 +37,19 @@ $profile = [
             <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
             <li class="nav-item"><a class="nav-link active" href="/profile.php">Profil</a></li>
             <li class="nav-item"><a class="nav-link" href="/social.php">Feed</a></li>
+            <li class="nav-item"><a class="nav-link" href="/style-guide.html">Style Guide</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
     <main>
-      <section class="container" style="margin-top:">
+      <section class="container py-5">
         <div class="card border-0 shadow-sm">
           <div class="card-body p-4 p-lg-5">
             <div class="row align-items-center g-4">
               <div class="col-md-auto">
-                <img src="<?= $profile['avatar'] ?>" class="rounded-circle border border-4 border-white shadow" width="150" height="150" style="object-fit: cover;" />
+                <img src="<?= $profile['avatar'] ?>" class="rounded-circle border border-4 border-white shadow custom_profile_avatar" alt="Profilbild von <?= $profile['name'] ?>" />
               </div>
               <div class="col-md">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
@@ -100,6 +101,7 @@ $profile = [
           <a href="/" class="text-white-50 text-decoration-none">Start</a>
           <a href="/social.php" class="text-white-50 text-decoration-none">Feed</a>
           <a href="/profile.php" class="text-white-50 text-decoration-none">Profil</a>
+          <a href="/style-guide.html" class="text-white-50 text-decoration-none">Style Guide</a>
           <a href="/impressum.php" class="text-white-50 text-decoration-none">Impressum</a>
         </div>
       </div>

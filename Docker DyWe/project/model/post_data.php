@@ -20,7 +20,7 @@ $posts = array(
         "userid" => 1,
         "user_realname" => "David Piekarski",
         "user_image" => "PictureOfMe.jpg",
-        "post_text" => "Sucht ihr noch spannende Kurse für die Interdisziplinäre Woche? 📝✨ Ein absoluter Tipp: Der Kurs **Drehbuchschreiben** bei Christian Mertens. Hier lernt ihr, wie aus einer ersten Idee eine packende Story auf dem Papier wird. Absoluter Empfehlungswert!",
+        "post_text" => "Sucht ihr noch spannende Kurse für die Interdisziplinäre Woche? 📝✨ Ein absoluter Tipp: der Kurs Drehbuchschreiben bei Christian Mertens. Hier lernt ihr, wie aus einer ersten Idee eine packende Story auf dem Papier wird. Absolut empfehlenswert!",
         "post_tags" => array("IDW", "HAWKiel", "Drehbuchschreiben", "Storytelling", "Medieninformatik", "KielUni"),
         "post_video_file" => "",
     ),
