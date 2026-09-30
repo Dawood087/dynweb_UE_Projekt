@@ -1,8 +1,8 @@
 <?php
-// Load the post array so the template can render the feed from one data source.
+// Load the data from the post_data.php file, which contains an array of posts.
 require_once __DIR__ . '/../model/post_data.php';
 
-// Use a post-specific thumbnail when a post does not have a video file.
+// Zwischenlösung: Use a specific thumbnail when a post does not have a video file.
 $thumbnailByPostId = array(
     "1" => "/assets/videos/thumb/thumb_spaetsommerfest.jpeg",
     "2" => "/assets/videos/thumb/thumb_videocut.jpeg",
@@ -43,27 +43,28 @@ $thumbnailByPostId = array(
         <h1 class="h2 fw-bold text-primary mb-4">Campus Feed</h1>
 
         <div class="row g-4">
-          <!-- Iterate over every post and render its array values in the feed card. -->
+          <!-- Iterate over every post and render its array values in the feed card -->
           <?php foreach ($posts as $postId => $post): ?>
             <div class="col-12">
               <article class="card border-0 shadow-sm overflow-hidden">
                 <div class="card-body p-3 p-md-4">
                   <div class="d-flex align-items-center gap-3 mb-3">
-                    <!-- Escape user-provided values before inserting them into HTML attributes. -->
-                    <img src="/assets/img/<?= htmlspecialchars($post['user_image']) ?>" class="rounded-circle custom_feed_avatar" alt="Profilbild von <?= htmlspecialchars($post['user_realname']) ?>" />
+                    <!-- Display the users profile image -->
+                    <img src="/assets/img/<?= htmlspecialchars($post['user_image']) ?>" class="rounded-circle custom_feed_avatar" />
                     <div class="flex-grow-1">
-                      <!-- urlencode() makes the username safe to use as a query-string value. -->
+                      <!-- Display Username and link it to the usernames profile -->
                       <a href="?user=<?= urlencode($post['username']) ?>" class="text-decoration-none fw-bold text-primary">@<?= htmlspecialchars($post['username']) ?></a>
                       <div class="small text-muted"><?= htmlspecialchars($post['user_realname']) ?></div>
                     </div>
                   </div>
 
-                  <!-- Posts with a video render a player; otherwise the matching thumbnail is shown. -->
+                  <!-- Render the post video if a video file is available -->
                   <?php if ($post['post_video_file'] !== ''): ?>
                     <video class="w-100 rounded" controls playsinline preload="metadata">
                       <source src="<?= htmlspecialchars($post['post_video_file']) ?>" type="video/mp4" />
                       Dein Browser unterstützt das Video-Tag nicht.
                     </video>
+                    <!-- If no video file is available, display a thumbnail image instead. Declarated at the top of the file. -->
                   <?php else: ?>
                     <img src="<?= $thumbnailByPostId[$postId] ?>" class="w-100 rounded" />
                   <?php endif; ?>

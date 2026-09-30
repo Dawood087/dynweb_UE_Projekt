@@ -1,9 +1,3 @@
-<?php
-/*
- * This page is a PHP-compatible template, but its legal content is currently
- * static HTML because it does not need values from an external data array.
- */
-?>
 <!doctype html>
 <html lang="de">
   <head>
@@ -24,7 +18,7 @@
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-3">
             <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="/social.php">Feed</a></li>
-            <li class="nav-item"><a class="nav-link active" href="/impressum.php">Impressum</a></li>
+            <li class="nav-item"><a class="nav-link" href="/profile.php">Profil</a></li>
             <li class="nav-item"><a class="nav-link" href="/style-guide.html">Style Guide</a></li>
           </ul>
         </div>
