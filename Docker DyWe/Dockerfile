@@ -22,16 +22,15 @@ RUN echo "<VirtualHost *:80>\n\
 </VirtualHost>" > /etc/apache2/sites-available/000-default.conf
 
 
-
+## Install basics
 RUN apt-get install -y \
     git \
     unzip \
     libzip-dev
 
 
-
+## Install PHP composer + make command available
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
 
 
 RUN ln -sf /bin/bash /bin/sh
