@@ -32,7 +32,6 @@ body {
 }
 
 .btn-outline-primary {
-  /* Outline buttons stay transparent until interaction, then use the same blue. */
   --bs-btn-color: var(--bs-primary);
   --bs-btn-disabled-color: var(--bs-primary);
   --bs-btn-disabled-border-color: var(--bs-primary);
