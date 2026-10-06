@@ -1,23 +1,19 @@
 :root {
-  /* Shared design tokens keep repeated values consistent across all pages. */
+  /* own Styling*/
   --bs-primary: #00305d;
   --bs-primary-rgb: 0, 48, 93;
   --carousel-image-height: 24rem;
-  --feature-icon-size: 3.25rem;
-  --profile-avatar-size: 9.375rem;
+  --feature-icon-size: 3rem;
+  --profile-avatar-size: 9rem;
   --feed-avatar-size: 3rem;
 }
 
+
 body {
-  /* Use a predictable system font stack without loading an additional web font. */
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
-/*
- * Bootstrap buttons consume these component variables internally.
- * Overriding them here applies the HAW Kiel blue to the normal, hover,
- * active, disabled and focus states while keeping Bootstrap's button markup.
- */
+
 .btn-primary,
 .btn-outline-primary {
   --bs-btn-border-color: var(--bs-primary);
@@ -42,11 +38,7 @@ body {
   --bs-btn-disabled-border-color: var(--bs-primary);
 }
 
-/*
- * Carousel images fill the available width and use a fixed height.
- * `object-fit: cover` preserves the image proportions by cropping overflow,
- * so differently sized source images still produce a uniform carousel.
- */
+
 .custom_carousel_image {
   display: block;
   width: 100%;
@@ -56,33 +48,28 @@ body {
   object-position: center;
 }
 
-/* Give feature icons a consistent circular container size; Bootstrap supplies
- * the circle, colors and alignment through the classes in the HTML. */
+
 .custom_feature_icon {
   width: var(--feature-icon-size);
   height: var(--feature-icon-size);
   font-size: 1.5rem;
 }
 
-/*
- * Profile avatars are square and cropped at the edges.
- * The surrounding Bootstrap classes provide the circular shape and border.
- */
+
 .custom_profile_avatar {
   width: var(--profile-avatar-size);
   height: var(--profile-avatar-size);
   object-fit: cover;
 }
 
-/* Feed avatars use the same cropping behavior at a smaller, fixed size. */
+
 .custom_feed_avatar {
   width: var(--feed-avatar-size);
   height: var(--feed-avatar-size);
   object-fit: cover;
 }
 
-/* The contact link is styled as a filled button while retaining Bootstrap's
- * spacing, focus behavior and button markup from the template. */
+
 .custom_contact_button {
   background-color: var(--bs-primary);
   color: white;
