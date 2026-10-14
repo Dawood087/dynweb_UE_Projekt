@@ -69,7 +69,7 @@ $profile = [
                 <!-- Render small sentence from bio property of the array. -->
                 <p class="mt-3 mb-3 text-secondary"><?= $profile['bio'] ?></p>
 
-                <!-- Render profile statistics -->
+                <!-- Render profil statistics -->
                 <div class="d-flex flex-wrap gap-4 small text-muted">
                   <span><strong class="text-dark"><?= $profile['followers'] ?></strong> Follower</span>
                   <span><strong class="text-dark"><?= $profile['following'] ?></strong> Following</span>
