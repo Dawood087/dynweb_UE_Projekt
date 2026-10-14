@@ -9,6 +9,11 @@ $thumbnailByPostId = array(
     "3" => "/assets/videos/thumb/thumb_drehbuchschreiben.jpeg",
     "4" => "/assets/videos/thumb/thumb_maclabore.jpeg",
     "5" => "/assets/videos/thumb/thumb_unitag.jpeg",
+    "6" => "/assets/videos/thumb/placeholder.jpg",
+    "7" => "/assets/videos/thumb/placeholder.jpg",
+    "8" => "/assets/videos/thumb/placeholder.jpg",
+    "9" => "/assets/videos/thumb/placeholder.jpg",
+    "10" => "/assets/videos/thumb/placeholder.jpg",
 );
 ?>
 <!DOCTYPE html>
@@ -50,7 +55,9 @@ $thumbnailByPostId = array(
                 <div class="card-body p-3 p-md-4">
                   <div class="d-flex align-items-center gap-3 mb-3">
                     <!-- Display the users profile image -->
-                    <img src="/assets/img/<?= htmlspecialchars($post['user_image']) ?>" class="rounded-circle custom_feed_avatar" />
+                    <?php if ($post['user_image'] !== ''): ?>
+                      <img src="/assets/img/<?= htmlspecialchars($post['user_image']) ?>" class="rounded-circle custom_feed_avatar" />
+                    <?php endif; ?>
                     <div class="flex-grow-1">
                       <!-- Display Username and link it to the usernames profile -->
                       <a href="?user=<?= urlencode($post['username']) ?>" class="text-decoration-none fw-bold text-primary">@<?= htmlspecialchars($post['username']) ?></a>
