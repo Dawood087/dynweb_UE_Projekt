@@ -1,0 +1,72 @@
+{% extends "base.twig" %}
+
+{% block title %}Impressum – HAW Campus Stories{% endblock %}
+{% block footer_links %}
+  <a href="/" class="text-white-50 text-decoration-none">Start</a>
+  <a href="/social.php" class="text-white-50 text-decoration-none">Feed</a>
+  <a href="/impressum.php" class="text-white-50 text-decoration-none">Impressum</a>
+  <a href="/style-guide.html" class="text-white-50 text-decoration-none">Style Guide</a>
+{% endblock %}
+
+{% block content %}
+    <main>
+      <section class="bg-primary bg-gradient text-white py-5">
+        <div class="container py-5 text-center">
+          <h1 class="display-5 fw-bold mb-3">Impressum</h1>
+          <p class="lead mb-0">So kommst du bei Problemen und Fragen auf uns zu!</p>
+        </div>
+      </section>
+
+      <section class="container py-5">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <h2 class="h4 fw-bold text-primary mb-3">Anbieter</h2>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item px-0"><strong>Name:</strong> HAW Campus Stories – Projektgruppe</li>
+                  <li class="list-group-item px-0"><strong>Institution:</strong> Hochschule für Angewandte Wissenschaften Kiel</li>
+                  <li class="list-group-item px-0"><strong>Adresse:</strong> Sokratesplatz 1, 24149 Kiel</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <h2 class="h4 fw-bold text-primary mb-3">Verantwortlich</h2>
+                <p class="mb-3 text-muted">Für die Inhalte dieser Website verantwortlich sind die Studierenden der Projektgruppe HAW Campus Stories (David Piekarski &amp; Marat Repin) im Rahmen der Übungsaufgabe im Modul Dynamische Webanwendungen / Dynamische Webseitengestaltung.</p>
+                <div class="d-grid gap-2">
+                  <a href="https://www.haw-kiel.de/" class="btn custom_contact_button">HAW Kiel besuchen</a>
+                  <a href="/" class="btn btn-outline-primary">Zur Startseite</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container pb-5">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <h2 class="h4 fw-bold text-primary mb-3">Inhaltlich verantwortlich</h2>
+                <p class="text-muted mb-0">Die bereitgestellten Campus-Posts, Texte und Social-Media-Inhalte dienen als Beispielinhalte für die Übungsaufgabe. Sie sind nicht als offizieller HAW-Kiel-Content zu verstehen.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <h2 class="h4 fw-bold text-primary mb-3">Haftung</h2>
+                <p class="text-muted mb-0">Trotz sorgfältiger Auswahl übernehmen wir keine Haftung für die Richtigkeit, Vollständigkeit oder Aktualität der bereitgestellten Inhalte. Die Verwendung der Website erfolgt auf eigene Verantwortung.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.twig" %}
+
+{% block title %}Campus Feed{% endblock %}
+{% block feed_nav_class %} active{% endblock %}
+{% block footer_spacing %}mt-5{% endblock %}
+
+{% block content %}
+    <main class="container py-4">
+      <section class="col-lg-9 mx-auto">
+        <h1 class="h2 fw-bold text-primary mb-4">Campus Feed</h1>
+
+        <div class="row g-4">
+          {% for postId, post in posts %}
+            <div class="col-12">
+              <article class="card border-0 shadow-sm overflow-hidden">
+                <div class="card-body p-3 p-md-4">
+                  <div class="d-flex align-items-center gap-3 mb-3">
+                    {% if post.user_image is not empty %}
+                      <img src="/assets/img/{{ post.user_image }}" class="rounded-circle custom_feed_avatar" />
+                    {% endif %}
+                    <div class="flex-grow-1">
+                      <a href="?user={{ post.username|url_encode }}" class="text-decoration-none fw-bold text-primary">@{{ post.username }}</a>
+                      <div class="small text-muted">{{ post.user_realname }}</div>
+                    </div>
+                  </div>
+
+                  {% if post.post_video_file is not empty %}
+                    <video class="w-100 rounded" controls playsinline preload="metadata">
+                      <source src="{{ post.post_video_file }}" type="video/mp4" />
+                      Dein Browser unterstützt das Video-Tag nicht.
+                    </video>
+                  {% else %}
+                    <img src="{{ thumbnailByPostId[postId] }}" class="w-100 rounded" />
+                  {% endif %}
+
+                  <p class="mt-3 mb-2">{{ post.post_text }}</p>
+                  <div class="d-flex flex-wrap gap-2">
+                    {% for tag in post.post_tags %}
+                      <a href="/?tag={{ tag|url_encode }}" class="badge text-bg-light text-decoration-none">#{{ tag }}</a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </article>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    </main>
+{% endblock %}
+
+{% block footer_links %}
+  <a href="/" class="text-white-50 text-decoration-none">Start</a>
+  <a href="/social.php" class="text-white-50 text-decoration-none">Feed</a>
+  <a href="/style-guide.html" class="text-white-50 text-decoration-none">Style Guide</a>
+  <a href="/impressum.php" class="text-white-50 text-decoration-none">Impressum</a>
+{% endblock %}
