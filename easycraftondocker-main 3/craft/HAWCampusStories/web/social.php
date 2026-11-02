@@ -2,8 +2,7 @@
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 // DB Connetion
-$pdo = new PDO('mysql:host=db;dbname=tiktok;charset=utf8mb4', 'craft', 'craft');
-
+$pdo = new PDO('mysql:host=craft_db;dbname=tiktok;charset=utf8mb4', 'root', 'cr4ftd4t4b4s3');
 $userFilter = $_GET['user'] ?? null;
 $tagFilter  = $_GET['tag']  ?? null;
 
@@ -15,12 +14,10 @@ $sql = "SELECT p.id AS post_id, u.username, u.user_realname, u.user_image,
         LEFT JOIN post_tag pt ON pt.fk_post = p.id
         LEFT JOIN tag t ON pt.fk_tag = t.id";
 
-// Filter-Logik
+// Filter if user or tag is provided
 if ($userFilter !== null && $userFilter !== '') {
     $sql .= " WHERE u.username = '$userFilter'";
 } elseif ($tagFilter !== null && $tagFilter !== '') {
-    // Unterabfrage (Subquery) nutzen, um den Post über seine ID nach dem Tag zu filtern,
-    // damit GROUP_CONCAT danach trotzdem noch ALLE Tags des Posts anzeigen kann!
     $sql .= " WHERE p.id IN (
         SELECT pt_sub.fk_post 
         FROM post_tag pt_sub 
