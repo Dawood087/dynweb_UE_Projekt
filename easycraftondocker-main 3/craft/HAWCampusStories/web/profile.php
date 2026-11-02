@@ -8,7 +8,7 @@ $profile = [
   'followers' => 0,
   'following' => 0,
   'posts' => 5,
-  'avatar' => '/assets/img/PictureOfMe.jpg',
+  'avatar' => '/assets/img/T_davidpiekarski.jpg',
   'stats' => [
     ['label' => 'Studiengang', 'value' => 'Multimedia Production'],
     ['label' => 'Semester', 'value' => '3. Semester'],

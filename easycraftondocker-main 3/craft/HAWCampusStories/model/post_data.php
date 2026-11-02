@@ -4,7 +4,7 @@ $posts = array(
     "1" => array("username" => "davidpiekarski",
         "userid" => 1,
         "user_realname" => "David Piekarski",
-        "user_image" => "PictureOfMe.jpg",
+        "user_image" => "T_davidpiekarski.jpg",
         "post_text" => "Diesen Mittwoch ist es so weit: Das Spätsommerfest auf dem Campus steht an! ☀️🎉 Egal ob Ersti oder höheres Semester – wir laden alle MMP-ler herzlich ein, vorbeizukommen, anzustoßen und den Sommer gemeinsam ausklingen zu lassen. Wir freuen uns auf euch!",
         "post_tags" => array("MMP", "HAWKiel", "CampusLife", "Spätsommerfest", "Studentenleben", "Kiel"),
         "post_video_file" => "",

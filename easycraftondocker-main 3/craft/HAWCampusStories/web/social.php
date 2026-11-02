@@ -44,16 +44,16 @@ foreach ($tagStatement->fetchAll(PDO::FETCH_ASSOC) as $tag) {
 }
 
 $thumbnailByPostId = array(
-    "1" => "/assets/videos/thumb/thumb_spaetsommerfest.jpeg",
-    "2" => "/assets/videos/thumb/thumb_videocut.jpeg",
-    "3" => "/assets/videos/thumb/thumb_drehbuchschreiben.jpeg",
-    "4" => "/assets/videos/thumb/thumb_maclabore.jpeg",
-    "5" => "/assets/videos/thumb/thumb_unitag.jpeg",
-    "6" => "/assets/videos/thumb/placeholder.jpg",
-    "7" => "/assets/videos/thumb/placeholder.jpg",
-    "8" => "/assets/videos/thumb/placeholder.jpg",
-    "9" => "/assets/videos/thumb/placeholder.jpg",
-    "10" => "/assets/videos/thumb/placeholder.jpg",
+    "1" => "/assets/design/thumb_spaetsommerfest.jpeg",
+    "2" => "/assets/design/thumb_videocut.jpeg",
+    "3" => "/assets/design/thumb_drehbuchschreiben.jpeg",
+    "4" => "/assets/design/thumb_maclabore.jpeg",
+    "5" => "/assets/design/thumb_unitag.jpeg",
+    "6" => "/assets/design/placeholder.jpg",
+    "7" => "/assets/design/placeholder.jpg",
+    "8" => "/assets/design/placeholder.jpg",
+    "9" => "/assets/design/placeholder.jpg",
+    "10" => "/assets/design/placeholder.jpg",
 );
 
 // twig load and render
