@@ -1,3 +1,4 @@
+/*
 <?php   
 $posts = array(
     "1" => array("username" => "davidpiekarski",
@@ -82,3 +83,4 @@ $posts = array(
     ),
 );
 ?>
+*/
