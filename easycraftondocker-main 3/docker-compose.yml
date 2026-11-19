@@ -1,12 +1,13 @@
 version: "3.8"
 name: 3-craft
+
 services:
   craft_server:
     container_name: 3-craft-php
     build: .
     restart: always
     ports:
-      - 3380:80
+      - "3380:80"
     volumes:
       - ./craft/:/var/www/html
     depends_on:
@@ -14,6 +15,7 @@ services:
     networks:
       vpcbr:
         ipv4_address: 10.80.0.10
+
   craft_db:
     container_name: 3-craft-db
     image: mariadb:10.5
@@ -25,16 +27,17 @@ services:
     volumes:
       - ./data:/var/lib/mysql
     ports:
-      - 3381:3306
+      - "3381:3306"
     networks:
       vpcbr:
         ipv4_address: 10.80.0.11
+
   dywe_phpmyadmin:
     container_name: 3-craft-phpmyadmin
     image: phpmyadmin
     restart: always
     ports:
-      - 3382:80
+      - "3382:80"
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST=10.80.0.11
@@ -49,6 +52,7 @@ services:
     networks:
       vpcbr:
         ipv4_address: 10.80.0.12
+
 networks:
   vpcbr:
     driver: bridge
