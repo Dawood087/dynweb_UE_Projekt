@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-// DB Connetion
+// DB Connection
 $pdo = new PDO('mysql:host=craft_db;dbname=tiktok;charset=utf8mb4', 'root', 'cr4ftd4t4b4s3');
 $userFilter = $_GET['user'] ?? null;
 $tagFilter  = $_GET['tag']  ?? null;
@@ -14,21 +14,26 @@ $sql = "SELECT p.id AS post_id, u.username, u.user_realname, u.user_image,
         LEFT JOIN post_tag pt ON pt.fk_post = p.id
         LEFT JOIN tag t ON pt.fk_tag = t.id";
 
-// Filter if user or tag is provided
+$params = array();
+
+// Filter 
 if ($userFilter !== null && $userFilter !== '') {
-    $sql .= " WHERE u.username = '$userFilter'";
+    $sql .= " WHERE u.username = :user";
+    $params[':user'] = $userFilter;
 } elseif ($tagFilter !== null && $tagFilter !== '') {
     $sql .= " WHERE p.id IN (
         SELECT pt_sub.fk_post 
         FROM post_tag pt_sub 
         JOIN tag t_sub ON pt_sub.fk_tag = t_sub.id 
-        WHERE t_sub.name = '$tagFilter'
+        WHERE t_sub.name = :tag
     )";
+    $params[':tag'] = $tagFilter;
 }
 
 $sql .= " GROUP BY p.id, u.id";
 
-$postStatement = $pdo->query($sql);
+$postStatement = $pdo->prepare($sql);
+$postStatement->execute($params);
 $posts = $postStatement->fetchAll(PDO::FETCH_ASSOC);
 
 $tagStatement = $pdo->query(
@@ -43,19 +48,6 @@ foreach ($tagStatement->fetchAll(PDO::FETCH_ASSOC) as $tag) {
     $allTags[$tag['name']] = $tag['post_count'];
 }
 
-$thumbnailByPostId = array(
-    "1" => "/assets/design/thumb_spaetsommerfest.jpeg",
-    "2" => "/assets/design/thumb_videocut.jpeg",
-    "3" => "/assets/design/thumb_drehbuchschreiben.jpeg",
-    "4" => "/assets/design/thumb_maclabore.jpeg",
-    "5" => "/assets/design/thumb_unitag.jpeg",
-    "6" => "/assets/design/placeholder.jpg",
-    "7" => "/assets/design/placeholder.jpg",
-    "8" => "/assets/design/placeholder.jpg",
-    "9" => "/assets/design/placeholder.jpg",
-    "10" => "/assets/design/placeholder.jpg",
-);
-
 // twig load and render
 $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__) . '/templates');
 $twig = new \Twig\Environment($loader, array('autoescape' => 'html'));
@@ -64,5 +56,4 @@ $twig = new \Twig\Environment($loader, array('autoescape' => 'html'));
 echo $twig->render('social.twig', array(
     'posts' => $posts,
     'allTags' => $allTags,
-    'thumbnailByPostId' => $thumbnailByPostId,
 ));
