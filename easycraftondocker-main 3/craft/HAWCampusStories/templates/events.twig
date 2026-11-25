@@ -1,0 +1,63 @@
+{% extends "base.twig" %}
+{% block title %}Campus-Events | HAW Campus Stories{% endblock %}
+{% block events_nav_class %} active{% endblock %}
+{% block content %}
+  {% set allEvents = craft.entries().section('events').orderBy('eventDate asc').all() %}
+  {% set highlight = null %}
+  {% for event in allEvents %}
+    {% if event.eventHighlight and highlight is null %}{% set highlight = event %}{% endif %}
+  {% endfor %}
+  <main class="container py-5">
+    <header class="mb-4">
+      <h1 class="fw-bold text-primary">{{ entry.title }}</h1>
+      {% if entry.eventIntro %}<p class="lead text-secondary mb-0">{{ entry.eventIntro|nl2br }}</p>{% endif %}
+    </header>
+    {% if highlight %}
+      {% set image = highlight.eventImage.one() %}
+      <article class="card border-0 shadow-sm overflow-hidden mb-4">
+        <div class="row g-0">
+          <div class="col-lg-6 d-flex align-items-center">
+            <div class="card-body p-4 p-lg-5">
+              <p class="text-primary fw-bold mb-2">Event-Highlight</p>
+              <h2 class="fw-bold mb-3">{{ highlight.title }}</h2>
+              <p class="text-secondary">{{ highlight.eventDescription }}</p>
+              <p class="fw-bold mb-2"><time datetime="{{ highlight.eventDate|date('c', timezone='Europe/Berlin') }}">{{ highlight.eventDate|date('d.m.Y · H:i', timezone='Europe/Berlin') }} Uhr</time></p>
+              <p class="mb-3">{{ highlight.eventLocation }}</p>
+              <p class="small text-secondary">{{ highlight.eventCategory.label }} · {{ highlight.eventCost }}</p>
+              <a class="btn btn-primary" href="{{ highlight.url }}">Mehr erfahren<span class="visually-hidden">: {{ highlight.title }}</span></a>
+            </div>
+          </div>
+          {% if image %}<div class="col-lg-6 custom_event_hero_media"><img class="custom_event_hero_image" src="{{ image.url }}" alt="{{ image.alt ?: highlight.title }}" fetchpriority="high"></div>{% endif %}
+        </div>
+      </article>
+    {% endif %}
+    <div class="row g-4">
+      {% for event in allEvents %}
+        {% if highlight is null or event.id != highlight.id %}
+          {% set image = event.eventImage.one() %}
+          <div class="col-md-6">
+            <article class="card border-0 shadow-sm h-100 overflow-hidden">
+              {% if image %}<img class="card-img-top custom_event_image" src="{{ image.url }}" alt="{{ image.alt ?: event.title }}" loading="lazy">{% endif %}
+              <div class="card-body p-4 d-flex flex-column align-items-start">
+                <h2 class="h3 fw-bold">{{ event.title }}</h2>
+                <p class="text-secondary">{{ event.eventDescription }}</p>
+                <p class="fw-bold mb-1"><time datetime="{{ event.eventDate|date('c', timezone='Europe/Berlin') }}">{{ event.eventDate|date('d.m.Y · H:i', timezone='Europe/Berlin') }} Uhr</time></p>
+                <p>{{ event.eventLocation }}</p>
+                <p class="small text-secondary">{{ event.eventCategory.label }} · {{ event.eventCost }}</p>
+                <a class="btn btn-outline-primary mt-auto" href="{{ event.url }}">Details ansehen<span class="visually-hidden">: {{ event.title }}</span></a>
+              </div>
+            </article>
+          </div>
+        {% endif %}
+      {% else %}
+        <div class="col-12"><p class="bg-white rounded p-4">Aktuell sind keine Veranstaltungen veröffentlicht. Schau bald wieder vorbei.</p></div>
+      {% endfor %}
+    </div>
+  </main>
+{% endblock %}
+{% block footer_links %}
+  <a href="/start.php" class="text-white-50 text-decoration-none">Start</a>
+  <a href="/social.php" class="text-white-50 text-decoration-none">Feed</a>
+  <a href="/events" class="text-white-50 text-decoration-none" aria-current="page">Events</a>
+  <a href="/impressum.php" class="text-white-50 text-decoration-none">Impressum</a>
+{% endblock %}

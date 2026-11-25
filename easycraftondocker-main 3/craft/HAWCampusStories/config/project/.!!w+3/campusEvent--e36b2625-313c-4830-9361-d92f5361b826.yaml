@@ -1,0 +1,173 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  c6f792fb-4763-4e06-834d-6eebbb1e1c8e:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: null
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: bce493b6-542e-4923-a452-99a8e64cc533
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 39456292-278f-4ced-98cb-4f119e3fa20c # Beschreibung
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 73aed8a1-803d-4b11-afe4-455e71223868
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: b4723ebf-f830-4b55-88c9-2232aaaabad9 # Datum und Uhrzeit
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: bbbedf14-8f22-4f7e-992b-21f008084a7a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: bb18a9ea-d17c-44d3-b49f-a33184f62ca9 # Ort
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e6e3a355-8226-4d88-b651-98f5affec646
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 18688636-1c9b-48b4-8ccb-0936e923fd5c # Kategorie
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: da1bbd65-f5ee-4307-8180-744f28c73edb
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 313c0dab-9c2e-4b6a-a947-a68ce99e4281 # Kosten
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: fc4a56e0-051d-4cac-b8d4-75526d4d7dac
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 617ab388-7b3b-4b5a-be1a-42930f24cefe # Als Event-Highlight anzeigen
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8fb956ec-32f5-4581-a574-024d8dcafd97
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 0ab710de-44f5-472e-aa90-f207112c657b # Eventbild
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 751b0215-fe34-4afd-bd87-571456eda378
+            userCondition: null
+            warning: null
+            width: 100
+        name: Inhalt
+        uid: 01e92148-f86b-4423-842c-d2cd1cd7e265
+        userCondition: null
+    thumbFieldKey: null
+handle: campusEvent
+hasTitleField: true
+icon: null
+name: Veranstaltung
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

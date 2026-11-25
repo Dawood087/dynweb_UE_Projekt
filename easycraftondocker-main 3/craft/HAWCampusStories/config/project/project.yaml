@@ -1,18 +1,40 @@
-dateModified: 1791983995
+dateModified: 1793631081
 email:
-  fromEmail: david.piekarski@stu.haw-kiel.de
+  fromEmail: marat.repin@stu.haw-kiel.de
   fromName: HAWCampusStories
   transportType: craft\mail\transportadapters\Sendmail
+fs:
+  campusEventImages:
+    hasUrls: true
+    name: Campus-Eventbilder
+    settings:
+      path: '@webroot/assets/design'
+    type: craft\fs\Local
+    url: /assets/design
 meta:
   __names__:
-    4a367ed7-9c69-415c-8e4b-2c3b82c62b1a: HAWCampusStories # HAWCampusStories
-    433df5dc-709a-4bef-85e2-35851e485e04: HAWCampusStories # HAWCampusStories
+    0ab710de-44f5-472e-aa90-f207112c657b: Eventbild # Eventbild
+    0b233b26-9a53-45e7-ac65-7d544880f7ce: HAWCampusStories # HAWCampusStories
+    313c0dab-9c2e-4b6a-a947-a68ce99e4281: Kosten # Kosten
+    617ab388-7b3b-4b5a-be1a-42930f24cefe: 'Als Event-Highlight anzeigen' # Als Event-Highlight anzeigen
+    817f2344-05ff-438d-ab29-1b68445a422b: HAWCampusStories # HAWCampusStories
+    18688636-1c9b-48b4-8ccb-0936e923fd5c: Kategorie # Kategorie
+    39456292-278f-4ced-98cb-4f119e3fa20c: Beschreibung # Beschreibung
+    a8ac9b17-f002-4b3b-9046-367b708acf75: Eventbilder # Eventbilder
+    a2946fb7-ce4a-497e-934f-d64da4eacc09: 'Public Schema' # Public Schema
+    b35ac599-e31a-46ba-aa91-ebc607f45a8b: Events # Events
+    b4723ebf-f830-4b55-88c9-2232aaaabad9: 'Datum und Uhrzeit' # Datum und Uhrzeit
+    bb18a9ea-d17c-44d3-b49f-a33184f62ca9: Ort # Ort
+    e36b2625-313c-4830-9361-d92f5361b826: Veranstaltung # Veranstaltung
+    ee705bdf-4d89-4659-9f7c-f69a066a9b02: Einleitung # Einleitung
+    f3f443eb-e8b5-43f3-aba4-d89d6b042248: Event-Seite # Event-Seite
+    fb9f5972-7ba2-40a9-a5ea-19ae73ec190b: Event-Übersicht # Event-Übersicht
 system:
   edition: solo
   live: true
   name: HAWCampusStories
   schemaVersion: 5.11.0.2
-  timeZone: America/Los_Angeles
+  timeZone: Europe/Berlin
 users:
   allowPublicRegistration: false
   defaultGroup: null

@@ -1,0 +1,35 @@
+columnSuffix: null
+handle: eventCategory
+instructions: null
+name: Kategorie
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Film und Kultur'
+        -
+          - value
+          - 'Film und Kultur'
+    -
+      __assoc__:
+        -
+          - label
+          - Workshop
+        -
+          - value
+          - Workshop
+    -
+      __assoc__:
+        -
+          - label
+          - Community
+        -
+          - value
+          - Community
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

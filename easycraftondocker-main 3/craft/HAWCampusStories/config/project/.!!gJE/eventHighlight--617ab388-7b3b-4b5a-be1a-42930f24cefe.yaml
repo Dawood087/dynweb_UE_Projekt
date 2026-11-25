@@ -1,0 +1,13 @@
+columnSuffix: null
+handle: eventHighlight
+instructions: 'Das erste hervorgehobene Event erscheint oben im großen Bereich.'
+name: 'Als Event-Highlight anzeigen'
+searchable: false
+settings:
+  default: false
+  offLabel: null
+  onLabel: null
+  showLabelsInCards: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: fb9f5972-7ba2-40a9-a5ea-19ae73ec190b # Event-Übersicht
+handle: eventsPage
+maxAuthors: 1
+minAuthors: 1
+name: Event-Seite
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  817f2344-05ff-438d-ab29-1b68445a422b: # HAWCampusStories
+    enabledByDefault: true
+    hasUrls: true
+    template: events
+    uriFormat: events
+type: single

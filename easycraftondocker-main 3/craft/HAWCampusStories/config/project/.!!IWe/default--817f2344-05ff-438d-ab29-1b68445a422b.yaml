@@ -1,8 +1,9 @@
 baseUrl: $PRIMARY_SITE_URL
+enabled: true
 handle: default
 hasUrls: true
 language: de-DE
 name: HAWCampusStories
 primary: true
-siteGroup: 433df5dc-709a-4bef-85e2-35851e485e04 # HAWCampusStories
+siteGroup: 0b233b26-9a53-45e7-ac65-7d544880f7ce # HAWCampusStories
 sortOrder: 1

@@ -1,0 +1,50 @@
+altTranslationKeyFormat: null
+altTranslationMethod: none
+fieldLayouts:
+  3261a031-33ad-471f-8ff1-8f9e33b94113:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: null
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\assets\AssetTitleField
+            uid: eb481545-cf79-452c-8971-71d1a9c23087
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 58754451-049d-449f-9d5d-c6cbe21d4d85
+        userCondition: null
+    thumbFieldKey: null
+fs: campusEventImages
+handle: campusEventImages
+name: Eventbilder
+sortOrder: 1
+subpath: ''
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+transformFs: null
+transformSubpath: ''
