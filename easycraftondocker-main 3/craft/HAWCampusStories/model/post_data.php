@@ -7,7 +7,7 @@ $posts = array(
         "user_image" => "T_davidpiekarski.jpg",
         "post_text" => "Diesen Mittwoch ist es so weit: Das Spätsommerfest auf dem Campus steht an! ☀️🎉 Egal ob Ersti oder höheres Semester – wir laden alle MMP-ler herzlich ein, vorbeizukommen, anzustoßen und den Sommer gemeinsam ausklingen zu lassen. Wir freuen uns auf euch!",
         "post_tags" => array("MMP", "HAWKiel", "CampusLife", "Spätsommerfest", "Studentenleben", "Kiel"),
-        "post_video_file" => "",
+        "post_video_file" => "19_mmp_post.mp4",
     ),
     "2" => array("username" => "lisa_schueller",
         "userid" => 2,
@@ -15,7 +15,7 @@ $posts = array(
         "user_image" => "T_lisa_schueller.jpg",
         "post_text" => "Ein kleiner Blick hinter die Kulissen: Ich sitze aktuell am Schnitt für ein neues Infovideo! 🖥️✂️ Welches Programm nutzt ihr am liebsten für euren Cut? Schreibt es mal in die Kommentare!",
         "post_tags" => array("Videoschnitt", "PremierePro", "Medienproduktion", "Filmmaking", "BehindTheScenes", "MMP"),
-        "post_video_file" => "",
+        "post_video_file" => "19_behindthescenes_post.mp4",
     ),
     "3" => array("username" => "max_mertens",
         "userid" => 3,
@@ -79,7 +79,7 @@ $posts = array(
         "user_image" => "T_emma_lorenzen.jpg",
         "post_text" => "Nach der Vorlesung noch kurz an der Förde entlang – der beste Kopf-frei-Moment, bevor es wieder an die Abgabe geht. 🌊",
         "post_tags" => array("Kiel", "Förde", "Studienalltag", "HAWKiel"),
-        "post_video_file" => "",
+        "post_video_file" => "19_kiel_post.mp4",
     ),
 );
 ?>

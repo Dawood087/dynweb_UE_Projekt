@@ -1,75 +1,77 @@
 <?php
 require_once dirname(__DIR__) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/model/model.php';
 
 // DB Connection
 $pdo = new PDO('mysql:host=craft_db;dbname=tiktok;charset=utf8mb4', 'root', 'cr4ftd4t4b4s3');
-$userFilter = $_GET['user'] ?? null;
-$tagFilter  = $_GET['tag']  ?? null;
 
-$sql = "SELECT p.id AS post_id, u.username, u.user_realname, u.user_image,
-               p.post_video_file, p.post_text,
-               GROUP_CONCAT(t.name SEPARATOR ',') AS tags
-        FROM post p
-        JOIN user u ON p.fk_user = u.id
-        LEFT JOIN post_tag pt ON pt.fk_post = p.id
-        LEFT JOIN tag t ON pt.fk_tag = t.id";
-
-$params = array();
-
-// Filter 
-if ($userFilter !== null && $userFilter !== '') {
-    $sql .= " WHERE u.username = :user";
-    $params[':user'] = $userFilter;
-} elseif ($tagFilter !== null && $tagFilter !== '') {
-    $sql .= " WHERE p.id IN (
-        SELECT pt_sub.fk_post 
-        FROM post_tag pt_sub 
-        JOIN tag t_sub ON pt_sub.fk_tag = t_sub.id 
-        WHERE t_sub.name = :tag
-    )";
-    $params[':tag'] = $tagFilter;
+function socialInput($value): string
+{
+    return is_string($value) ? trim($value) : '';
 }
 
-$sql .= " GROUP BY p.id, u.id";
+$userFilter = socialInput($_GET['user'] ?? '');
+$tagFilter = $userFilter === '' ? socialInput($_GET['tag'] ?? '') : '';
+$search = socialInput($_GET['q'] ?? '');
+$filters = array_filter(['user' => $userFilter, 'tag' => $tagFilter, 'q' => $search], 'strlen');
+$feedUrl = '/social.php' . ($filters ? '?' . http_build_query($filters) : '');
+$likesAvailable = socialLikesAvailable($pdo);
 
-$postStatement = $pdo->prepare($sql);
-$postStatement->execute($params);
-$posts = $postStatement->fetchAll(PDO::FETCH_ASSOC);
+session_start();
+$_SESSION['campus_like_token'] ??= bin2hex(random_bytes(32));
+$likeToken = $_SESSION['campus_like_token'];
+$likedPosts = $_SESSION['campus_liked_posts'] ?? [];
 
-$tagStatement = $pdo->query(
-    "SELECT t.name, COUNT(pt.fk_post) AS post_count
-     FROM tag t
-     LEFT JOIN post_tag pt ON pt.fk_tag = t.id
-     GROUP BY t.id, t.name
-     ORDER BY post_count DESC, t.name ASC, t.id ASC"
-);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $token = $_POST['like_token'] ?? null;
+    if (!$likesAvailable || !is_string($token) || !hash_equals($likeToken, $token)) {
+        http_response_code(403);
+        exit('Die Like-Anfrage konnte nicht bestätigt werden.');
+    }
 
-$allTags = array();
-foreach ($tagStatement->fetchAll(PDO::FETCH_ASSOC) as $tag) {
-    $allTags[$tag['name']] = $tag['post_count'];
+    $postId = filter_var($_POST['post_id'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+    $desiredState = $_POST['liked'] ?? null;
+    if ($postId === false || !in_array($desiredState, ['0', '1'], true)) {
+        http_response_code(400);
+        exit('Ungültige Like-Anfrage.');
+    }
+
+    $isLiked = isset($likedPosts[$postId]);
+    if ($desiredState === '1' && !$isLiked && changeSocialLike($pdo, $postId, 1)) {
+        $likedPosts[$postId] = true;
+    } elseif ($desiredState === '0' && $isLiked) {
+        changeSocialLike($pdo, $postId, -1);
+        unset($likedPosts[$postId]);
+    }
+
+    $_SESSION['campus_liked_posts'] = $likedPosts;
+    session_write_close();
+    header('Location: ' . $feedUrl . '#post-' . $postId, true, 303);
+    exit;
+}
+session_write_close();
+
+$posts = loadSocialPosts($pdo, $userFilter, $tagFilter, $search, $likesAvailable);
+$visibleTags = [];
+foreach ($posts as $post) {
+    if (!empty($post['tags'])) {
+        $visibleTags = array_merge($visibleTags, explode(',', $post['tags']));
+    }
 }
 
-$topTags = array_slice(array_filter($allTags), 0, 5, true);
-
-$recentPosters = $pdo->query(
-    "SELECT u.username, u.user_realname, u.user_image
-     FROM post p
-     JOIN user u ON u.id = p.fk_user
-     GROUP BY u.id, u.username, u.user_realname, u.user_image
-     ORDER BY MAX(p.post_date) DESC, MAX(p.id) DESC
-     LIMIT 5"
-)->fetchAll(PDO::FETCH_ASSOC);
-
-// twig load and render
 $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__) . '/templates');
-$twig = new \Twig\Environment($loader, array('autoescape' => 'html'));
+$twig = new \Twig\Environment($loader, ['autoescape' => 'html']);
 
-// prepare for twig render
-echo $twig->render('social.twig', array(
+echo $twig->render('social.twig', [
     'posts' => $posts,
-    'allTags' => $allTags,
-    'topTags' => $topTags,
-    'recentPosters' => $recentPosters,
+    'allTags' => loadSocialTagCounts($pdo, array_values(array_unique($visibleTags))),
+    'topTags' => loadSocialTagCounts($pdo),
+    'recentPosters' => loadRecentSocialPosters($pdo),
     'activeUser' => $userFilter,
-    'activeTag' => ($userFilter === null || $userFilter === '') ? $tagFilter : null,
-));
+    'activeTag' => $tagFilter,
+    'search' => $search,
+    'feedUrl' => $feedUrl,
+    'likesAvailable' => $likesAvailable,
+    'likedPostIds' => array_keys($likedPosts),
+    'likeToken' => $likeToken,
+]);

@@ -9,7 +9,7 @@
     <header class="row justify-content-center mb-4">
       <div class="col-12 col-lg-6 custom_feed_center d-flex flex-wrap align-items-baseline justify-content-between gap-2">
         <h1 class="h2 fw-bold text-primary mb-0">Campus Feed</h1>
-        {% if activeUser is not empty or activeTag is not empty %}
+        {% if activeUser is not empty or activeTag is not empty or search is not empty %}
           <a href="/social.php" class="small text-decoration-none">Alle Beiträge</a>
         {% endif %}
       </div>
@@ -17,6 +17,13 @@
 
     <div class="row g-4 align-items-start justify-content-center">
       <section class="col-12 col-lg-6 order-lg-2 custom_feed_center" aria-label="Beiträge">
+        <form action="/social.php" method="get" class="mb-3" role="search">
+          <label for="feed-search" class="visually-hidden">Beiträge durchsuchen</label>
+          <div class="input-group">
+            <input id="feed-search" name="q" type="search" class="form-control" placeholder="Text, Nutzer oder Hashtag" value="{{ search }}">
+            <button type="submit" class="btn btn-outline-primary">Suchen</button>
+          </div>
+        </form>
         <div class="vstack gap-4">
           {% for post in posts %}
             {% set media = post.post_video_file|default('')|trim %}
@@ -25,7 +32,7 @@
             {% set author = post.user_realname|default(post.username) %}
             {% set tags = post.tags is not empty ? post.tags|split(',') : [] %}
 
-            <article class="card border-0 rounded-4 shadow-sm overflow-hidden">
+            <article id="post-{{ post.post_id }}" class="card border-0 rounded-4 shadow-sm overflow-hidden">
               <header class="d-flex align-items-center gap-2 px-3 py-3">
                 {% if post.user_image is not empty %}
                   <img src="/assets/img/{{ post.user_image }}" class="rounded-circle custom_feed_avatar flex-shrink-0" alt="" loading="lazy" />
@@ -57,6 +64,18 @@
                       <a href="/social.php?tag={{ tag|url_encode }}" class="badge text-bg-light text-decoration-none text-wrap text-break">#{{ tag }} ({{ allTags[tag]|default(0) }})</a>
                     {% endfor %}
                   </div>
+                {% endif %}
+                {% if likesAvailable %}
+                  {% set liked = post.post_id in likedPostIds %}
+                  <form class="mt-3" action="{{ feedUrl }}" method="post">
+                    <input type="hidden" name="post_id" value="{{ post.post_id }}">
+                    <input type="hidden" name="like_token" value="{{ likeToken }}">
+                    <input type="hidden" name="liked" value="{{ liked ? '0' : '1' }}">
+                    <button type="submit" aria-pressed="{{ liked ? 'true' : 'false' }}" class="btn btn-sm rounded-pill d-inline-flex align-items-center gap-2 {{ liked ? 'btn-danger' : 'btn-outline-danger' }}">
+                      <span aria-hidden="true">{{ liked ? '♥' : '♡' }}</span>
+                      Gefällt mir <span class="fw-semibold">{{ post.likes }}<span class="visually-hidden"> Likes</span></span>
+                    </button>
+                  </form>
                 {% endif %}
               </div>
             </article>
