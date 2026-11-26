@@ -96,3 +96,37 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
+/* Keep the post column centered and the portrait video comfortably sized. */
+.custom_feed_layout {
+  --feed-avatar-size: 2.5rem;
+  max-width: 58.5rem;
+}
+
+.custom_feed_center,
+.custom_feed_sidebar {
+  max-width: 29.25rem;
+}
+
+.custom_feed_sidebar {
+  --feed-avatar-size: 2rem;
+}
+
+.custom_feed_media {
+  width: calc(100% - 1rem);
+  max-width: 23.5rem;
+}
+
+.custom_feed_reel {
+  aspect-ratio: 9 / 16;
+  object-fit: contain;
+}
+
+.custom_feed_photo {
+  max-height: 26rem;
+  object-fit: contain;
+}
+
+.custom_feed_copy > p {
+  line-height: 1.4;
+}

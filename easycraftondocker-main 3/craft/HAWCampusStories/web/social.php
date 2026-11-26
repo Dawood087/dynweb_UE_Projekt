@@ -40,13 +40,25 @@ $tagStatement = $pdo->query(
     "SELECT t.name, COUNT(pt.fk_post) AS post_count
      FROM tag t
      LEFT JOIN post_tag pt ON pt.fk_tag = t.id
-     GROUP BY t.id, t.name"
+     GROUP BY t.id, t.name
+     ORDER BY post_count DESC, t.name ASC, t.id ASC"
 );
 
 $allTags = array();
 foreach ($tagStatement->fetchAll(PDO::FETCH_ASSOC) as $tag) {
     $allTags[$tag['name']] = $tag['post_count'];
 }
+
+$topTags = array_slice(array_filter($allTags), 0, 5, true);
+
+$recentPosters = $pdo->query(
+    "SELECT u.username, u.user_realname, u.user_image
+     FROM post p
+     JOIN user u ON u.id = p.fk_user
+     GROUP BY u.id, u.username, u.user_realname, u.user_image
+     ORDER BY MAX(p.post_date) DESC, MAX(p.id) DESC
+     LIMIT 5"
+)->fetchAll(PDO::FETCH_ASSOC);
 
 // twig load and render
 $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__) . '/templates');
@@ -56,4 +68,8 @@ $twig = new \Twig\Environment($loader, array('autoescape' => 'html'));
 echo $twig->render('social.twig', array(
     'posts' => $posts,
     'allTags' => $allTags,
+    'topTags' => $topTags,
+    'recentPosters' => $recentPosters,
+    'activeUser' => $userFilter,
+    'activeTag' => ($userFilter === null || $userFilter === '') ? $tagFilter : null,
 ));
