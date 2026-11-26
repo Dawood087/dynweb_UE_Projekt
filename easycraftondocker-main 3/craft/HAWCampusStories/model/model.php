@@ -102,3 +102,5 @@ function changeSocialLike(PDO $pdo, int $postId, int $change): bool
     $statement->execute([$change, $postId]);
     return $statement->rowCount() === 1;
 }
+
+// : Sicherheitsmechanismus gegen SQL-Injection, der die Eingabe auf erlaubte Zeichen prüft. muss rein
