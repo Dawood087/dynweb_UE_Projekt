@@ -110,6 +110,7 @@ body {
 
 .custom_feed_sidebar {
   --feed-avatar-size: 2rem;
+  top: 1rem;
 }
 
 .custom_feed_media {
