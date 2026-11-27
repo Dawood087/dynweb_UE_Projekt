@@ -8,7 +8,7 @@ $profile = [
   'followers' => 0,
   'following' => 0,
   'posts' => 5,
-  'avatar' => '/assets/img/19_T_davidpiekarski.jpg',
+  'avatar' => 'http://haw-kiel.florianschatz.de/dywe/assets/images/19_davidpiekarski.jpg',
   'stats' => [
     ['label' => 'Studiengang', 'value' => 'Multimedia Production'],
     ['label' => 'Semester', 'value' => '3. Semester'],

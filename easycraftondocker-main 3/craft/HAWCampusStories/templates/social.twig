@@ -31,15 +31,12 @@
             {% set hasMedia = mediaName is not empty and mediaName != 'placeholder.jpg' %}
             {% set author = post.user_realname|default(post.username) %}
             {% set authorImage = post.user_image|default('')|trim %}
-            {% if authorImage is not empty and not (authorImage starts with '19_') %}
-              {% set authorImage = '19_' ~ authorImage %}
-            {% endif %}
             {% set tags = post.tags is not empty ? post.tags|split(',') : [] %}
 
             <article id="post-{{ post.post_id }}" class="card border-0 rounded-4 shadow-sm overflow-hidden">
               <header class="d-flex align-items-center gap-2 px-3 py-3">
                 {% if authorImage is not empty %}
-                  <img src="/assets/img/{{ authorImage }}" class="rounded-circle custom_feed_avatar flex-shrink-0" alt="" loading="lazy" />
+                  <img src="http://haw-kiel.florianschatz.de/dywe/assets/images/{{ authorImage }}" class="rounded-circle custom_feed_avatar flex-shrink-0" alt="" loading="lazy"/>
                 {% endif %}
                 <div>
                   <h2 class="h6 fw-bold mb-0 text-break">{{ author }}</h2>
@@ -50,12 +47,13 @@
               {% if hasMedia %}
                 <div class="custom_feed_media mx-auto rounded-3 overflow-hidden bg-dark">
                   {% if mediaName ends with '.mp4' %}
-                    <video class="custom_feed_reel d-block w-100" controls playsinline preload="metadata" aria-label="Video von {{ author }}">
-                      <source src="/assets/videos/{{ media }}" type="video/mp4" />
+                    {% set thumbnail = media|replace({'.mp4': '.jpg'}) %}
+                    <video class="custom_feed_reel d-block w-100" controls playsinline preload="metadata"{% if post.lowresvideo_exists %} poster="http://haw-kiel.florianschatz.de/dywe/assets/videos/thumb_auto_generated/{{ thumbnail }}"{% endif %} aria-label="Video von {{ author }}">
+                      <source src="http://haw-kiel.florianschatz.de/dywe/assets/videos/{% if post.lowresvideo_exists %}src_auto_generated{% else %}src{% endif %}/{{ media }}" type="video/mp4"/>
                       Dein Browser unterstützt das Video-Tag nicht.
                     </video>
                   {% else %}
-                    <img src="/assets/videos/{{ media }}" class="custom_feed_photo d-block w-100" alt="Bild zum Beitrag von {{ author }}" loading="lazy" />
+                    <img src="http://haw-kiel.florianschatz.de/dywe/assets/videos/thumb_auto_generated/{{ media }}" class="custom_feed_photo d-block w-100" alt="Bild zum Beitrag von {{ author }}" loading="lazy"/>
                   {% endif %}
                 </div>
               {% endif %}
@@ -98,13 +96,13 @@
           <div id="feed-recent-users" class="list-group list-group-flush">
             {% for poster in recentPosters %}
               {% set posterImage = poster.user_image|default('')|trim %}
-              {% if posterImage is not empty and not (posterImage starts with '19_') %}
-                {% set posterImage = '19_' ~ posterImage %}
-              {% endif %}
-              <a href="/social.php?user={{ poster.username|url_encode }}"{% if poster.username == activeUser %} aria-current="true"{% endif %}
-                 class="list-group-item list-group-item-action d-flex align-items-center gap-2 px-3 py-2{{ poster.username == activeUser ? ' bg-primary bg-opacity-10' : '' }}">
+              <a
+                href="/social.php?user={{ poster.username|url_encode }}"{% if poster.username == activeUser %}
+                aria-current="true"{% endif %}
+                class="list-group-item list-group-item-action d-flex align-items-center gap-2 px-3 py-2{{ poster.username == activeUser ? ' bg-primary bg-opacity-10' : '' }}"
+              >
                 {% if posterImage is not empty %}
-                  <img src="/assets/img/{{ posterImage }}" class="rounded-circle custom_feed_avatar flex-shrink-0" alt="" loading="lazy" />
+                  <img src="http://haw-kiel.florianschatz.de/dywe/assets/images/{{ posterImage }}" class="rounded-circle custom_feed_avatar flex-shrink-0" alt="" loading="lazy"/>
                 {% endif %}
                 <span class="text-break">
                   <strong class="d-block small">{{ poster.user_realname|default(poster.username) }}</strong>
@@ -123,8 +121,11 @@
           <h2 id="feed-top-tags-heading" class="h6 fw-bold text-primary mb-0 px-3 pt-3 pb-2">Top 5 Hashtags</h2>
           <div id="feed-top-tags" class="list-group list-group-flush">
             {% for tag, count in topTags %}
-              <a href="/social.php?tag={{ tag|url_encode }}"{% if tag == activeTag %} aria-current="true"{% endif %}
-                 class="list-group-item list-group-item-action d-flex align-items-center justify-content-between gap-1 ps-3 pe-2 py-2{{ tag == activeTag ? ' bg-primary bg-opacity-10' : '' }}">
+              <a
+                href="/social.php?tag={{ tag|url_encode }}"{% if tag == activeTag %}
+                aria-current="true"{% endif %}
+                class="list-group-item list-group-item-action d-flex align-items-center justify-content-between gap-1 ps-3 pe-2 py-2{{ tag == activeTag ? ' bg-primary bg-opacity-10' : '' }}"
+              >
                 <span class="small fw-semibold text-break">#{{ tag }}</span>
                 <span class="badge rounded-pill text-bg-light">{{ count }}<span class="visually-hidden"> {{ count == 1 ? 'Beitrag' : 'Beiträge' }}</span></span>
               </a>

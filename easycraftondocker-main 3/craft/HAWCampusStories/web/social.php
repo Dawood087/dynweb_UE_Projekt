@@ -1,9 +1,18 @@
 <?php
-require_once dirname(__DIR__) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/bootstrap.php';
 require_once dirname(__DIR__) . '/model/model.php';
 
-// DB Connection
-$pdo = new PDO('mysql:host=craft_db;dbname=tiktok;charset=utf8mb4', 'root', 'cr4ftd4t4b4s3');
+$dbPassword = $_ENV['HAW_KIEL_DB_PASSWORD'] ?? getenv('HAW_KIEL_DB_PASSWORD');
+if (!is_string($dbPassword) || $dbPassword === '') {
+    throw new RuntimeException('Set HAW_KIEL_DB_PASSWORD in the project .env file.');
+}
+
+$pdo = new PDO(
+    'mysql:host=jtrt.your-database.de;dbname=haw_kiel;charset=utf8mb4',
+    'haw_kiel_r',
+    $dbPassword,
+    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+);
 
 function socialInput($value): string
 {
@@ -75,3 +84,5 @@ echo $twig->render('social.twig', [
     'likedPostIds' => array_keys($likedPosts),
     'likeToken' => $likeToken,
 ]);
+
+// 2 Posts haben kein Video, daher werden sie nicht angezeigt. Das ist korrekt, da die Aufgabe nur Posts mit Videos anzeigt.

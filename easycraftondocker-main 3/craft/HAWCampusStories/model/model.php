@@ -10,24 +10,25 @@ function loadSocialPosts(PDO $pdo, string $user, string $tag, string $search, bo
 {
     $likes = $likesAvailable ? 'MAX(p.likes)' : '0';
     $sql = "SELECT p.id AS post_id, u.username, u.user_realname, u.user_image,
-                   p.post_video_file, p.post_text, $likes AS likes,
+                   p.post_video_file, p.post_text, p.lowresvideo_exists, $likes AS likes,
                    GROUP_CONCAT(DISTINCT t.name SEPARATOR ',') AS tags
             FROM post p
             JOIN user u ON p.fk_user = u.id
             LEFT JOIN post_tag pt ON pt.fk_post = p.id
-            LEFT JOIN tag t ON pt.fk_tag = t.id";
+            LEFT JOIN tag t ON pt.fk_tag = t.id
+            WHERE p.post_video_file LIKE :group_prefix ESCAPE '!'";
     $filters = [];
-    $params = [];
+    $params = ['group_prefix' => '19!_%'];
 
     if ($user !== '') {
-        $sql .= ' WHERE u.username = ?';
-        $params[] = $user;
+        $filters[] = 'u.username = :username';
+        $params['username'] = $user;
     } elseif ($tag !== '') {
-        $filters[] = 'MAX(t.name = ?) = 1';
-        $params[] = $tag;
+        $filters[] = 'MAX(t.name = :tag) = 1';
+        $params['tag'] = $tag;
     }
 
-    $sql .= ' GROUP BY p.id, u.id, u.username, u.user_realname, u.user_image, p.post_video_file, p.post_text';
+    $sql .= ' GROUP BY p.id, u.id, u.username, u.user_realname, u.user_image, p.post_video_file, p.post_text, p.lowresvideo_exists';
 
     if ($search !== '') {
         $term = ltrim($search, '@#');
@@ -35,11 +36,14 @@ function loadSocialPosts(PDO $pdo, string $user, string $tag, string $search, bo
 
         // Prozentzeichen und Unterstriche sind Teil des Suchtexts.
         $pattern = '%' . strtr($term, ['!' => '!!', '%' => '!%', '_' => '!_']) . '%';
-        $filters[] = "(p.post_text LIKE ? ESCAPE '!'
-                    OR u.username LIKE ? ESCAPE '!'
-                    OR u.user_realname LIKE ? ESCAPE '!'
-                    OR MAX(t.name LIKE ? ESCAPE '!') = 1)";
-        array_push($params, $pattern, $pattern, $pattern, $pattern);
+        $filters[] = "(p.post_text LIKE :search_text ESCAPE '!'
+                    OR u.username LIKE :search_username ESCAPE '!'
+                    OR u.user_realname LIKE :search_name ESCAPE '!'
+                    OR MAX(t.name LIKE :search_tag ESCAPE '!') = 1)";
+        $params['search_text'] = $pattern;
+        $params['search_username'] = $pattern;
+        $params['search_name'] = $pattern;
+        $params['search_tag'] = $pattern;
     }
 
     // HAVING prüft den fertigen Post mit allen seinen Hashtags.
@@ -47,7 +51,7 @@ function loadSocialPosts(PDO $pdo, string $user, string $tag, string $search, bo
         $sql .= ' HAVING ' . implode(' AND ', $filters);
     }
 
-    $sql .= ' ORDER BY p.id LIMIT 20';
+    $sql .= ' ORDER BY p.id DESC LIMIT 20';
     $statement = $pdo->prepare($sql);
     $statement->execute($params);
     return $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -62,10 +66,18 @@ function loadSocialTagCounts(PDO $pdo, ?array $tags = null): array
     $sql = "SELECT t.name, COUNT(DISTINCT p.id) AS post_count
             FROM tag t
             JOIN post_tag pt ON pt.fk_tag = t.id
-            JOIN post p ON p.id = pt.fk_post";
+            JOIN post p ON p.id = pt.fk_post
+            JOIN user u ON u.id = p.fk_user
+            WHERE p.post_video_file LIKE :group_prefix ESCAPE '!'";
+    $params = ['group_prefix' => '19!_%'];
     if ($tags !== null) {
-        $placeholders = implode(', ', array_fill(0, count($tags), '?'));
-        $sql .= " WHERE t.name IN ($placeholders)";
+        $placeholders = [];
+        foreach (array_values($tags) as $index => $tag) {
+            $placeholder = 'tag_' . $index;
+            $placeholders[] = ':' . $placeholder;
+            $params[$placeholder] = $tag;
+        }
+        $sql .= ' AND t.name IN (' . implode(', ', $placeholders) . ')';
     }
 
     // Ohne Tagliste laden wir die fünf häufigsten Hashtags.
@@ -75,7 +87,7 @@ function loadSocialTagCounts(PDO $pdo, ?array $tags = null): array
     }
 
     $statement = $pdo->prepare($sql);
-    $statement->execute($tags ?? []);
+    $statement->execute($params);
     return $statement->fetchAll(PDO::FETCH_KEY_PAIR);
 }
 
@@ -84,10 +96,13 @@ function loadRecentSocialPosters(PDO $pdo): array
     $sql = "SELECT u.username, u.user_realname, u.user_image
             FROM post p
             JOIN user u ON u.id = p.fk_user
+            WHERE p.post_video_file LIKE :group_prefix ESCAPE '!'
             GROUP BY u.id, u.username, u.user_realname, u.user_image
             ORDER BY MAX(p.post_date) DESC, MAX(p.id) DESC
             LIMIT 5";
-    return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    $statement = $pdo->prepare($sql);
+    $statement->execute(['group_prefix' => '19!_%']);
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function changeSocialLike(PDO $pdo, int $postId, int $change): bool
